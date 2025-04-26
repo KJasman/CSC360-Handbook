@@ -3,7 +3,7 @@
 #show: chapter.with(
   title: "CSC 360 Handbook",
   number: none,
-  authors:("Konrad Jasman", "Amir Baharloo"),
+  authors:("Konrad Jasman",),
   overview: (
 "This handbook presents a hands-on approach to learning operating systems concepts, within the context of *CSC 360* at the University of Victoria. This is intended to provide a brief overview of theory, but only within the extent needed to get started. If you, the reader, find yourself lost, you may review the suggested reading or our course textbook: \"Operating System Concepts, 10th Edition\".
 
