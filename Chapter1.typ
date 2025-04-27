@@ -273,7 +273,7 @@ How to resolve a merge conflict:
 1. Open the file containing the conflict.
 2. Look for the conflict markers (`<<<<<<<`, `=======`, `>>>>>>>`).
 3. Decide how to combine or choose changes.
-4. Delete the conflict markers.
+4. Delete the conflict markers. Some editors handle this automatically depending on your selection; others do not.
 5. Save the file.
 6. Stage and commit the resolved file:
 ```sh
@@ -388,3 +388,54 @@ __pycache__/
 # Node.js
 node_modules/
 ```
+
+There are many more advanced Git concept, from Cherry-Picking to Submodules and more. If you are interested, the best source of information is the Git book itself, found #link("https://git-scm.com/book/en/v2")[here]. 
+
+
+= Linux Command Line Basics
+
+Similar to Git, it is difficult to progress through your career as a software developer without running into Linux. For many who primarily use Windows or Mac systems, you can get around your system fairly well without using Bash/Zsh, Powershell, or alternative command line client. Not so for Linux. Most Linux systems are faster and more effective to navigate via command line.
+
+= Makefile Basics
+
+Makefiles allow us to simplify compilation. Generally, compiling a series of files correctly can be complicated; requiring fairly lengthy strings.
+
+When you're working on software projects, especially those with multiple source files, the compilation process can quickly become tedious and error-prone. Let me illustrate this with a motivating example.
+Imagine you're developing a simple C program with the following structure:
+
+- `main.c` - Contains your main function
+- `utils.c` - Contains utility functions
+- `math_operations.c` - Contains various math operations
+- Plus additional header files for each source file as needed
+
+Without a Makefile, you'd need to compile manually:
+
+```sh
+gcc -c main.c -o main.o
+gcc -c utils.c -o utils.o
+gcc -c math_operations.c -o math_operations.o
+gcc main.o utils.o math_operations.o -o my_program
+```
+This might seem manageable initially, but consider how this combination of commands gets worse as we work with more files. The solution? Makefiles. Makefiles are single files, most often titled simply `makefile`. 
+
+Here is an example `makefile` that performs the same task, when run with `make` or `make my_program`, will produce an executable titled `my_program`:
+
+```make
+CFLAGS = -Wall -Werror
+
+myprogram: main.o utils.o
+    gcc main.o utils.o -o myprogram
+
+# Compile main.c into main.o
+main.o: main.c
+    gcc -c main.c -o main.o
+
+# Compile utils.c into utils.o
+utils.o: utils.c
+    gcc -c utils.c -o utils.o
+
+```
+
+Makefiles have several components. First, we set several variables to avoid significant repetition: most notably, `CFLAGS`. 
+
+- The `CFLAGS` variable is conventionally used to set compilation flags, typically used to aid in development and debugging. `-Wall` and `-Wpedantic` are the most notable tags, however mayn more exist. For more compiler flags, see #link("https://www.spec.org/cpu2017/flags/gcc.2018-02-16.html")[here].  
