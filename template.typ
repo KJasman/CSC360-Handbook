@@ -52,7 +52,7 @@ pagebreak(weak: true)
 
     // Authors block at bottom right
     #align(bottom + right)[
-      #text(size: 12pt)[Contributors:]
+      #text(size: 12pt)[Authors:]
       #text(size: 12pt, style: "italic",)[
         #v(0.5em)
         #authors.join(", ")
