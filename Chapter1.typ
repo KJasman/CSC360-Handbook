@@ -5,12 +5,11 @@
   number: none,
   authors:("Konrad Jasman",),
   overview: (
-"This handbook presents a hands-on approach to learning operating systems concepts, within the context of *CSC 360* at the University of Victoria. This is intended to provide a brief overview of theory, but only within the extent needed to get started. If you, the reader, find yourself lost, you may review the suggested reading or our course textbook: \"Operating System Concepts, 10th Edition\".
+"This handbook presents a hands-on approach to learning operating systems concepts, within the context of CSC 360 at the University of Victoria. This is intended to provide a brief overview of theory, but only within the extent needed to get started. If you, the reader, find yourself lost, you may review the suggested reading or our course textbook: \"Operating System Concepts, 10th Edition\".
 
 As a preface, it should be noted that this handbook was last modified in April 2025. Since then, the technology mentioned may have evolved! However, the concepts contained within may serve as a good reference if you find yourself lost – or simply want to learn a little bit more and aren't sure where to start.
 
-Chapter 1 covers programming tools with which some competency is expected. This chapter aims to address any gaps in understanding and establish an applied understanding of the aforementioned tools.  
-
+Chapter 1 covers programming tools with which some competency is expected. This chapter aims to address any gaps in understanding and establish an applied understanding of the aforementioned tools.
 ")
 )
 
@@ -22,7 +21,7 @@ Chapter 1 covers programming tools with which some competency is expected. This 
 
 #v(0.25in)
 
-Whether you're new to version control or already have a grasp of the basics, this chapter will help you understand how Git works, how to manage your code changes, and how to collaborate effectively with others.
+Whether you're new to version control or already have a grasp of the basics, this section will help you understand how Git works, how to manage your code changes, and how to collaborate effectively with others.
 
 Version Control is a way to track and manage changes to files or projects. It allows you to:
 - Keep a history of modifications.
@@ -166,17 +165,24 @@ git revert <commit-hash>
 
 `Reset` is a bit more aggressive: moving the current branch to a specific commit and discarding or keeping certain changes depending on the reset type. This is a good option if you simply want to make the code in a certain branch, likely the one you are currently working on, have the same content as a previous commit. `Reset` may be configured with several flags:
 
-Remember that "working directory" is the current space you are working in on your device. "Staging area" is the space between your working directory and your (local) git repository. 
-
 1. Soft reset (`--soft`): Keeps your changes in the staging area.
 2. Mixed reset (`--mixed`): Keeps your changes in your working directory, but unstaged.
 3. Hard reset (`--hard`): Discards all changes in your working directory and staging area.
+
+#box(
+  width: 100%,
+  stroke: 0.75pt,
+  radius: 4pt,
+  inset: 8pt,
+   [Remember that _working directory_ is the current space you are working in on your device. _Staging area_ is the space between your working directory and your (local) git repository.])
+
 
 For example:
 ```sh
 git reset --hard <commit-hash>
 ```
-- This is destructive and permanently removes commits that come after `<commit-hash>` from your local branch.
+- This permanently removes commits that come after `<commit-hash>` from your local branch.
+
 
 *Pulling and Pushing Changes*
 
@@ -315,7 +321,7 @@ git remote remove myremote
 
 *Stashing Changes*
 
-Stashing allows you to save your uncommitted changes temporarily without committing them. You might want to stash your 
+Stashing allows you to save your uncommitted changes temporarily without committing them. You might want to stash your changes temporarily to allow for pulling changes from a remote source.
 
 ```sh
 git stash
@@ -337,6 +343,12 @@ git stash list
 git stash apply stash@{2}
 ```
 
+If you no longer want a stash:
+```sh
+git stash drop
+```
+- Removes the most recent stash.
+  
 *Rebasing*
 
 Rebasing allows you to change the base of your branch to another commit, creating a linear project history.
