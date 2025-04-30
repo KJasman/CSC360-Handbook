@@ -41,7 +41,7 @@ Anyway, by now you probably know Git is good and have a fairly strong idea of wh
 
 === Setting Up Git
 #v(.15in)
-If you are a student in CSC360 at UVic, you likely have access to the UVic CSC Linux Server – which has Git installed for your convenience. If you plan on exclusively using the CSC Servers for the duration of CSC 360, you may skip ahead to the #link(<basic-config>)[basic configuration] section.
+If you are a student in CSC360 at UVic, you likely have access to the UVic CSC Linux Server – which has Git installed for your convenience. If you plan on exclusively using the CSC Servers for the duration of CSC 360, you may skip ahead to the #link(<basic-config>)[#underline[basic configuration]] section.
 
 *Installing Git*
 - Windows: Download from git-scm.com and follow the installation wizard.
@@ -401,7 +401,7 @@ __pycache__/
 node_modules/
 ```
 
-There are many more advanced Git concept, from Cherry-Picking to Submodules and more. If you are interested, the best source of information is the Git book itself, found #link("https://git-scm.com/book/en/v2")[here]. 
+There are many more advanced Git concept, from Cherry-Picking to Submodules and more. If you are interested, the best source of information is the Git book itself, found #link("https://git-scm.com/book/en/v2")[#underline[here]]. 
 
 
 = Linux Command Line Basics
@@ -420,7 +420,7 @@ Imagine you're developing a simple C program with the following structure:
 - `math_operations.c` - Contains various math operations
 - Plus additional header files for each source file as needed
 
-Without a Makefile, you'd need to compile manually:
+Without a makefile, you'd need to type out the following manually in order to compile your program:
 
 ```sh
 gcc -c main.c -o main.o
@@ -453,7 +453,7 @@ clean:
 
 Makefiles have several components. Let's break down the example above:
 
-- The `CFLAGS` variable is conventionally used to set compilation flags, typically used to aid in development and debugging. `-Wall` and `-Wpedantic` are the most notable tags, however mayn more exist. For more compiler flags, see #link("https://www.spec.org/cpu2017/flags/gcc.2018-02-16.html")[here].  
+- The `CFLAGS` variable is conventionally used to set compilation flags, typically used to aid in development and debugging. `-Wall` and `-Wpedantic` are the most notable tags, however mayn more exist. For more compiler flags, see #link("https://www.spec.org/cpu2017/flags/gcc.2018-02-16.html")[#underline[here]].  
 
 - Rules: each rule is structured in the format `target: dependencies` and is followed by a command. We use rules to inform `make` what needs to built, and how it should be built. 
 
@@ -466,13 +466,12 @@ clean:
    rm -f *.o
 ```
 
-
 Note that the default target of `make` is the first target in the makefile. This is the target that will be run when you run `make` without specifying a target.
 
 - Dependencies are the files that need to exist and be up-to-date before the target can be built. In the above example `main.o`, `utils.o` and `math_operations.o` are dependencies. Make checks the timestamps of a target and all its dependencies, and rebuilds the target if any dependency is newer than the target. Often times a dependency will have its own run in the makefile. This is called a `dependency chain`.
 
 
-Makefiles can be used with automatic variables to reduce the verbosity of makefiles. Here are the more common automatic variables:
+Makefiles can be used with automatic variables to reduce the verbosity. Here are the more common automatic variables:
 
 - `$@` : refers to the target of the current rule. 
 - `$<` : refers to the first dependency -- otherwise known as the first filename after the colon in your rule.
@@ -516,6 +515,6 @@ clean:
 	rm -f $(OBJECTS) myprogram
 ```
 
-For the complete list of automatic variable, see the #link("https://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html")[makefile documentation].
+For the complete list of automatic variable, see the #link("https://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html")[#underline[makefile documentation]].
 
 If you are familiar with Linux commands, you might notice here that we use `echo` within a makefile and wonder: "Hmm, I thought makefiles were only for building C programs." Nope! Makefiles have much more extensible uses. You can use makefiles as a way to automate more advanced build processes in many languages from Java to Python, manage data pipelines, handle deployment tasks, run tests, as well as compile LaTeX and Typst documents like this one more efficiently. However, just because you can use makefiles to do it, does not necessarily mean they are the best tool for the job. Keep this in mind in your career, and enjoy the beauty of makefiles!
