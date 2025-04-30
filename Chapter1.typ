@@ -481,6 +481,29 @@ Here, the wildcard `%` matches `main`, so the command should execute equivalent 
    echo "Compiled main module" >> build.log
 ```
 
+If we were to streamline the complete example above using automatic variables, we might get something like the following:
+
+```make
+CC = gcc
+CFLAGS = -Wall -Werror
+OBJECTS = main.o utils.o math_operations.o
+
+myprogram: $(OBJECTS)
+	$(CC) $^ -o $@
+
+main.o: main.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+utils.o: utils.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+math_operations.o: math_operations.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+	rm -f $(OBJECTS) myprogram
+```
+
 For the complete list of automatic variable, see the #link("https://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html")[makefile documentation].
 
-If you are familiar with Linux commands, you might notice here that we use `echo` within a makefile and wonder: "Hmm, I thought makefiles were only for building C programs." Nope! Makefiles have much more extensible uses. You can use makefiles as a way to automate more advanced build processes in many languages from Java to Python, manage data pipelines, handle deployment tasks, run tests, as well as compile LaTeX and Typst documents like this one more efficiently. However, just because you can use makefiles to do it, does not necessarily mean they are the best tool for the job. Keep in this mind in your career, and enjoy the beauty of makefiles!
+If you are familiar with Linux commands, you might notice here that we use `echo` within a makefile and wonder: "Hmm, I thought makefiles were only for building C programs." Nope! Makefiles have much more extensible uses. You can use makefiles as a way to automate more advanced build processes in many languages from Java to Python, manage data pipelines, handle deployment tasks, run tests, as well as compile LaTeX and Typst documents like this one more efficiently. However, just because you can use makefiles to do it, does not necessarily mean they are the best tool for the job. Keep this in mind in your career, and enjoy the beauty of makefiles!
