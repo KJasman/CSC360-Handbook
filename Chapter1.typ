@@ -423,19 +423,64 @@ Here is an example `makefile` that performs the same task, when run with `make` 
 ```make
 CFLAGS = -Wall -Werror
 
-myprogram: main.o utils.o
-    gcc main.o utils.o -o myprogram
+myprogram: main.o utils.o math_operations.o
+	gcc main.o utils.o math_operations.o -o myprogram
 
-# Compile main.c into main.o
 main.o: main.c
-    gcc -c main.c -o main.o
+	gcc $(CFLAGS) -c main.c -o main.o
 
-# Compile utils.c into utils.o
 utils.o: utils.c
-    gcc -c utils.c -o utils.o
+	gcc $(CFLAGS) -c utils.c -o utils.o
 
+math_operations.o: math_operations.c
+	gcc $(CFLAGS) -c math_operations.c -o math_operations.o
+
+clean:
+	rm -f main.o utils.o math_operations.o myprogram
 ```
 
-Makefiles have several components. First, we set several variables to avoid significant repetition: most notably, `CFLAGS`. 
+Makefiles have several components. Let's break down the example above:
 
 - The `CFLAGS` variable is conventionally used to set compilation flags, typically used to aid in development and debugging. `-Wall` and `-Wpedantic` are the most notable tags, however mayn more exist. For more compiler flags, see #link("https://www.spec.org/cpu2017/flags/gcc.2018-02-16.html")[here].  
+
+- Rules: each rule is structured in the format `target: dependencies` and is followed by a command. We use rules to inform `make` what needs to built, and how it should be built. 
+
+- Targets: Targets are files or actions that make will create or execute; they appear on the left side of the colon in a rule. In the above example, a target might be `mypgrogram`, which would create an executable `myprogram`, by utilizing a series of sub-targets `utils.o` and `main.o`. To run this target, we make execute `make myprogram` in our bash/zsh client.
+
+We may also have `phony` targets which represent not an actual file to be created, but instead an action to be performed. `Clean` is the best example of this, as it is often included to clean up the files produced by make. Here is an example:
+
+```make
+clean:
+   rm -f *.o
+```
+
+
+Note that the default target of `make` is the first target in the makefile. This is the target that will be run when you run `make` without specifying a target.
+
+- Dependencies are the files that need to exist and be up-to-date before the target can be built. In the above example `main.o`, `utils.o` and `math_operations.o` are dependencies. Make checks the timestamps of a target and all its dependencies, and rebuilds the target if any dependency is newer than the target. Often times a dependency will have its own run in the makefile. This is called a `dependency chain`.
+
+
+Makefiles can be used with automatic variables to reduce the verbosity of makefiles. Here are the more common automatic variables:
+
+- `$@` : refers to the target of the current rule. 
+- `$<` : refers to the first dependency -- otherwise known as the first filename after the colon in your rule.
+- `$^` : refers to all dependencies, separated by spaces.
+- `$?` : refers to all variables newer than the target.
+- `$*` : refers to text that matches the `%` wildcard in a pattern rule. It gives you just the matching part, without any extensions. For example:
+
+```make
+%.o: %.c
+	gcc -c $< -o $@
+	echo "Compiled $* module" >> build.log
+```
+
+Here, the wildcard `%` matches `main`, so the command should execute equivalent to running the following from your shell terminal:
+
+```make
+   gcc -c main.c -o main.o
+   echo "Compiled main module" >> build.log
+```
+
+For the complete list of automatic variable, see the #link("https://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html")[makefile documentation].
+
+If you are familiar with Linux commands, you might notice here that we use `echo` within a makefile and wonder: "Hmm, I thought makefiles were only for building C programs." Nope! Makefiles have much more extensible uses. You can use makefiles as a way to automate more advanced build processes in many languages from Java to Python, manage data pipelines, handle deployment tasks, run tests, as well as compile LaTeX and Typst documents like this one more efficiently. However, just because you can use makefiles to do it, does not necessarily mean they are the best tool for the job. Keep in this mind in your caree, and enjoy the beauty of makefiles!
