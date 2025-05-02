@@ -9,12 +9,15 @@
 
 As a preface, it should be noted that this handbook was last modified in April 2025. Since then, the technology mentioned may have evolved! However, the concepts contained within may serve as a good reference if you find yourself lost – or simply want to learn a little bit more and aren't sure where to start.
 
-Chapter 1 covers programming tools with which some competency is expected. This chapter aims to address any gaps in understanding and establish an applied understanding of the aforementioned tools.
+Chapter 1 covers programming tools with which some competency is expected. This chapter aims to address any gaps in understanding and establish an applied understanding of the aforementioned tools. 
+
+There may be more chapters added to support student learning with worked examples. 
 ")
 )
 
 = Chapter 1: Programming Tools
-#linebreak()#linebreak()#linebreak()#linebreak()
+
+#v(0.15in)
 
 
 == Mastering Git
@@ -408,6 +411,68 @@ There are many more advanced Git concept, from Cherry-Picking to Submodules and 
 
 Similar to Git, it is difficult to progress through your career as a software developer without running into Linux. For many who primarily use Windows or Mac systems, you can get around your system fairly well without using Bash/Zsh, Powershell, or alternative command line client. Not so for Linux. Most Linux systems are faster and more effective to navigate via command line.
 
+The Linux command line might look intimidating at first, but it’s one of the most empowering tools you can learn. Instead of pointing and clicking around with a mouse, you tell your computer exactly what you want it to do with short text commands. 
+
+== Getting Around: Basic Navigation
+
++ `pwd`: "where am I right now?". `pwd` stands for "print working directory"; it tells you the exact folder you are currently sitting in. 
+
++ `ls`: "What do we have here?". `ls` lists all the files in your current (or an alternatively specified) directory. 
+
+Some flags can be used to specify additional behaviour for `ls`. For instance: `ls -l` shows additional details, and `ls -a` shows all files -- including any hidden files.
+
++ `cd`: "change directory". `cd` allows us to move from one directory to another. You can navigate either with relative paths, providing directions from your current location, or by absolute paths (by providing the absolute path to a directory).
+
+Additionally, remember that `cd ..` moves "up" one level in the folder structure, and `cd ~` will always take you to your home directory. 
+
+Experiment with these to get the hang of them: command line is a must-have skill in your career as a developer!
+
+== File Management
+
++ `mkdir`: "create a new directory". `mkdir` allows us to create a directory with a name of our choosing by running `mkdir <new-folder>`; where "`<new-folder>`" is replaced by the name of your folder.
+
+Note that you may create a folder in a different directory by providing a path to the folder in combination with the foldername. E.g: `mkdir ../<new-folder>` will create a folder named "`<new-folder>`" in the previous directory (one level up).
+
++ `rmdir`: "remove an (empty) directory". We may use `rmdir` as a safer way to remove unwanted folders. 
+
+Since there is no "recycle bin" from which we may restore content delted by command line, `rmdir` guarantees us that the directory we are removing is empty.
+
++ `touch`: "create an empty file". `touch` creates an empty file if one of the same name does not already exist, otherwise updates the time it was last modified without making changes. 
+
+E.g: `touch somefile.txt`. 
+
++ `cp`: "copy". `cp` copies files from one location to another. E.g: `cp somefile.txt backup-somefile.txt` will create a duplicate of `somefile.txt's` contents, named `backup-somefiles.txt`. 
+
+Similarly to `cp`, we have `mv`: "move". `mv` *#underline[moves]* files from one location to another, so the original will no longer remain. E.g: `mv somefile.txt backup-somefile.txt` will obliterate `somefile.txt` and create `backup-somefile.txt` with the same name. 
+
+Interestingly, `mv` is commonly used to drive the "file rename" mechanism, as the content remains the same. 
+
++ `rm`: "remove files". `rm` is used to remove both files and folders, but #underline[use this carefully]! As mentioned above, command line does not have a way to easily recover deleted files, so make sure you are deleting only the items you truly wish to never see again. 
+
+Example useage: `rm somefile.txt`. This obliterates `somefile.txt`. Useage can be extended to directories by appending the `-r` ("recurse") flag, to delete the directory and all its contents: `rm /somedir`.
+
+== Peeking Into Files
+
++ `cat`: "print file contents". `cat` literally performs concatenation and print, but is most often used to show the complete contents of a file. Assuming we have `somefile.txt` and are in the same directory, we may display it to terminal with: `cat somefile.txt`. 
+
+Because `cat` performs concatenation, we may use it to combine files with some handy output redirection: `cat somefile.txt otherfile.txt > someotherfile.txt`, where `someotherfile.txt` contains the concatenation of both files.
+
++ `less`: "scroll through a file". `less` allows us to open a file so that we may scroll up/down with a keyboard. E.g: `less somefile.txt`. We may exit this mode by selecting `q`.
+
++ `head` and `tail`: "start from beginnind/end of a file". `head` allows us to peak at the head (top) or `tail` (bottom) of our file, by default showing the first 10 lines. This can be customized with the `-n` flag to show more lines. 
+ 
+E.g: `head -n 20 somefile.txt` will show the first 20 lines. 
+
+
++ `wc`: "count words". `wc` by default prints the number of lines(`-l`), words(`-w`) and bytes(`-c`) in that order, and may print only one of these as specified by a given flag. 
+ 
+E.g: `wc -l somefile.txt` will print the number of lines in the specified file.
+
+
+== Searching & Finding
+
++ `grep`: "search for text"
+
 = Makefile Basics
 
 Makefiles allow us to simplify compilation. Generally, compiling a series of files correctly can be complicated; requiring fairly lengthy strings.
@@ -453,7 +518,7 @@ clean:
 
 Makefiles have several components. Let's break down the example above:
 
-- The `CFLAGS` variable is conventionally used to set compilation flags, typically used to aid in development and debugging. `-Wall` and `-Wpedantic` are the most notable tags, however mayn more exist. For more compiler flags, see #link("https://www.spec.org/cpu2017/flags/gcc.2018-02-16.html")[#underline[here]].  
+- The `CFLAGS` variable is conventionally used to set compilation flags, typically used to aid in development and debugging. `-Wall` and `-Wpedantic` are the most notable tags, however mayn more exist. For more compiler flags, see #link("https://www.spec.org/cpu2017/flags/gcc.2018-02-16.html")[here].  
 
 - Rules: each rule is structured in the format `target: dependencies` and is followed by a command. We use rules to inform `make` what needs to built, and how it should be built. 
 
@@ -488,8 +553,8 @@ Makefiles can be used with automatic variables to reduce the verbosity. Here are
 Here, the wildcard `%` matches `main`, so the command should execute equivalent to running the following from your shell terminal:
 
 ```make
-   gcc -c main.c -o main.o
-   echo "Compiled main module" >> build.log
+gcc -c main.c -o main.o
+echo "Compiled main module" >> build.log
 ```
 
 If we were to streamline the complete example above using automatic variables, we might get something like the following:
@@ -517,4 +582,4 @@ clean:
 
 For the complete list of automatic variable, see the #link("https://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html")[#underline[makefile documentation]].
 
-If you are familiar with Linux commands, you might notice here that we use `echo` within a makefile and wonder: "Hmm, I thought makefiles were only for building C programs." Nope! Makefiles have much more extensible uses. You can use makefiles as a way to automate more advanced build processes in many languages from Java to Python, manage data pipelines, handle deployment tasks, run tests, as well as compile LaTeX and Typst documents like this one more efficiently. However, just because you can use makefiles to do it, does not necessarily mean they are the best tool for the job. Keep this in mind in your career, and enjoy the beauty of makefiles!
+If you are familiar with Linux commands, you might notice here that we use `echo` within a makefile and wonder: "Hmm, I thought makefiles were only for building C programs." Nope! Makefiles have much more extensible uses. You can use makefiles as a way to automate more advanced build processes in many languages from Java to Python, manage data pipelines, handle deployment tasks, run tests, as well as compile LaTeX and Typst documents like this one more efficiently. However, just because you can use makefiles to do it, does not necessarily mean they are the best tool for the job. Keep this in mind in your career as a developer, and enjoy the beauty of makefiles!
