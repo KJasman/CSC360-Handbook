@@ -9,20 +9,19 @@
 
 As a preface, it should be noted that this handbook was last modified in April 2025. Since then, the technology mentioned may have evolved! However, the concepts contained within may serve as a good reference if you find yourself lost – or simply want to learn a little bit more and aren't sure where to start.
 
-Chapter 1 covers programming tools with which some competency is expected. This chapter aims to address any gaps in understanding and establish an applied understanding of the aforementioned tools. 
+This section covers programming tools with which some competency is expected. This chapter aims to address any gaps in understanding and establish an applied understanding of the aforementioned tools. 
 
 There may be more chapters added to support student learning with worked examples. 
 ")
 )
 
-= Chapter 1: Programming Tools
+= Programming Tools
 
 #v(0.15in)
 
+= Git Basics
 
-== Mastering Git
-
-#v(0.25in)
+#v(0.15in)
 
 Whether you're new to version control or already have a grasp of the basics, this section will help you understand how Git works, how to manage your code changes, and how to collaborate effectively with others.
 
@@ -42,7 +41,7 @@ Git is by far the most popular distributed version control system. It's fast, fr
 
 Anyway, by now you probably know Git is good and have a fairly strong idea of why we enjoy it so. Let's get hands-on.
 
-=== Setting Up Git
+== Setting Up Git
 #v(.15in)
 If you are a student in CSC360 at UVic, you likely have access to the UVic CSC Linux Server – which has Git installed for your convenience. If you plan on exclusively using the CSC Servers for the duration of CSC 360, you may skip ahead to the #link(<basic-config>)[#underline[basic configuration]] section.
 
@@ -68,7 +67,7 @@ git config --global core.editor "nano"
 
 This sets your default text editor for commit messages to Nano. You can also set it to Vim, VS Code, or any other editor you prefer. If you are just starting out, it will likely be most convenient to instead set this to your favorite editor.
 
-=== Creating a Repository
+== Creating a Repository
 
 #v(.15in)
 
@@ -151,7 +150,7 @@ git log --oneline
 ```
 - A compact, single-line summary of each commit.
 
-=== Version Control Operations
+== Version Control Operations
 
 #v(0.15in)
 
@@ -211,7 +210,7 @@ git pull <remote> <branch>
 
 A very similar command to `git pull` is `git fetch`. `fetch` downloads changes from a remote repository and emplaces them in your local repository, but unlike `pull`, does not integrate them into your working files. This is somewhat safer, as it allows you to inspect remote changes before integrating them. However, as with most things, is mildly more inconvenient to perform.  
 
-=== Branch Management
+== Branch Management
 
 #v(.15in)
 
@@ -292,7 +291,7 @@ git commit
 
 This can be quite tricky, and you will likely make mistakes -- especially the first few times. Be careful!
 
-=== Remote Operations
+== Remote Operations
 #v(.15in)
 
 *Working with Remotes*
@@ -312,7 +311,7 @@ git remote -v
 ```sh
 git remote add myremote https://github.com/username/myrepo.git
 ```
-- `myremote` becomes your short name for that remote URL.
+- `myremote` becomes your short name for that remote URL. This can be simplified by ignoring the use of shortnames and simply providing the remote url. 
 
 *Removing a Remote*
 
@@ -320,7 +319,8 @@ git remote add myremote https://github.com/username/myrepo.git
 git remote remove myremote
 ```
 
-=== Advanced Git Techniques
+== (More) Advanced Git Techniques
+#v(0.15in)
 
 *Stashing Changes*
 
@@ -364,7 +364,7 @@ git rebase main
 
 Interactive rebase (`git rebase -i <commit_or_branch>`) allows you to reorder, squash, or edit commits. This is more advanced but highly useful for cleaning up commit history.
 
-== Best Practices and Tips
+== Git Best Practices and Tips
 #v(.15in)
 
 1. Commit Often and Write Descriptive Messages
@@ -414,6 +414,7 @@ Similar to Git, it is difficult to progress through your career as a software de
 The Linux command line might look intimidating at first, but it’s one of the most empowering tools you can learn. Instead of pointing and clicking around with a mouse, you tell your computer exactly what you want it to do with short text commands. 
 
 == Getting Around: Basic Navigation
+#v(0.15in)
 
 + `pwd`: "where am I right now?". `pwd` stands for "print working directory"; it tells you the exact folder you are currently sitting in. 
 
@@ -428,6 +429,7 @@ Additionally, remember that `cd ..` moves "up" one level in the folder structure
 Experiment with these to get the hang of them: command line is a must-have skill in your career as a developer!
 
 == File Management
+#v(0.15in)
 
 + `mkdir`: "create a new directory". `mkdir` allows us to create a directory with a name of our choosing by running `mkdir <new-folder>`; where "`<new-folder>`" is replaced by the name of your folder.
 
@@ -452,6 +454,7 @@ Interestingly, `mv` is commonly used to drive the "file rename" mechanism, as th
 Example useage: `rm somefile.txt`. This obliterates `somefile.txt`. Useage can be extended to directories by appending the `-r` ("recurse") flag, to delete the directory and all its contents: `rm /somedir`.
 
 == Peeking Into Files
+#v(0.15in)
 
 + `cat`: "print file contents". `cat` literally performs concatenation and print, but is most often used to show the complete contents of a file. Assuming we have `somefile.txt` and are in the same directory, we may display it to terminal with: `cat somefile.txt`. 
 
@@ -471,7 +474,19 @@ E.g: `wc -l somefile.txt` will print the number of lines in the specified file.
 
 == Searching & Finding
 
-+ `grep`: "search for text"
++ `grep`: "search for text". `grep` looks through files to find lines containing a specific word or pattern. 
+
+E.g: `grep "hello" somefile.txt` would print all lines in `somefile.txt` including the word "hello", if any. 
+
+As with most commands, the behavior of grep can very heavily be customized with flags. The most common ones are `-i` for case insnsitive search and `-r` for recursive search through directories, and a complete list may be found in the #link("https://www.man7.org/linux/man-pages/man1/grep.1.html")[#underline[documentation]].
+
++ `find`: "go find some files". `find` searches folders and their subfolders to find items that match certain criteria. This command is often used to find patterns defined with regex. 
+
+E.g: `find /home/Documents -name "*.txt"` will list every `.txt` file within the `/home/Documents` directory. As with `grep`, the behaviour of `find` can be heavily customized with flags. Refer to the #link("https://www.man7.org/linux/man-pages/man1/find.1.html")[documentation] to learn more!
+
++ `diff`: "compare two files". `Diff` compares two files and shows which lines are different.
+  
+E.g: `diff somefile1.txt somefile2.txt` will display exactly where the two differ. 
 
 = Makefile Basics
 
