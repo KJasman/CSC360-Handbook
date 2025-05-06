@@ -255,6 +255,8 @@ git checkout main
 git merge <feature-branch-name>
 ```
 
+#pagebreak()
+
 *Deleting a Branch*
 
 The rules for branch deletion vary per organization. Generally, branches are deleted after merging or if the branch is no longer needed:
@@ -298,6 +300,8 @@ This can be quite tricky, and you will likely make mistakes -- especially the fi
 
 A remote is a copy of your repository stored elsewhere (usually on a server or hosted platform). Typically:
 - `origin` is the default name for your primary remote.
+
+#pagebreak()
 
 *Listing Remotes*
 
@@ -413,78 +417,89 @@ Similar to Git, it is difficult to progress through your career as a software de
 
 The Linux command line might look intimidating at first, but it’s one of the most empowering tools you can learn. Instead of pointing and clicking around with a mouse, you tell your computer exactly what you want it to do with short text commands. 
 
+Remember that almost all Linux command behaviour can be customized with the addition of flags. Experiment with these to get the hang of them: command line is a must-have skill in your career as a developer!
+
 == Getting Around: Basic Navigation
 #v(0.15in)
 
-+ `pwd`: "where am I right now?". `pwd` stands for "print working directory"; it tells you the exact folder you are currently sitting in. 
+- #text(fill: red)[ `pwd`]: "where am I right now?". `pwd` stands for "print working directory"; it tells you the exact folder you are currently sitting in. 
 
-+ `ls`: "What do we have here?". `ls` lists all the files in your current (or an alternatively specified) directory. 
+#line(length: 50%, end: (75%, 0%), start: (25%, 0%))
+
+- #text(fill: red)[ `ls`]: "What do we have here?". `ls` lists all the files in your current (or an alternatively specified) directory. 
 
 Some flags can be used to specify additional behaviour for `ls`. For instance: `ls -l` shows additional details, and `ls -a` shows all files -- including any hidden files.
-
-+ `cd`: "change directory". `cd` allows us to move from one directory to another. You can navigate either with relative paths, providing directions from your current location, or by absolute paths (by providing the absolute path to a directory).
+#line(length: 50%, end: (75%, 0%), start: (25%, 0%))
+- #text(fill: red)[ `cd`]: "change directory". `cd` allows us to move from one directory to another. You can navigate either with relative paths, providing directions from your current location, or by absolute paths (by providing the absolute path to a directory).
 
 Additionally, remember that `cd ..` moves "up" one level in the folder structure, and `cd ~` will always take you to your home directory. 
-
-Experiment with these to get the hang of them: command line is a must-have skill in your career as a developer!
 
 == File Management
 #v(0.15in)
 
-+ `mkdir`: "create a new directory". `mkdir` allows us to create a directory with a name of our choosing by running `mkdir <new-folder>`; where "`<new-folder>`" is replaced by the name of your folder.
+- #text(fill: red)[ `mkdir`]: "create a new directory". `mkdir` allows us to create a directory with a name of our choosing by running `mkdir <new-folder>`; where "`<new-folder>`" is replaced by the name of your folder.
 
-Note that you may create a folder in a different directory by providing a path to the folder in combination with the foldername. E.g: `mkdir ../<new-folder>` will create a folder named "`<new-folder>`" in the previous directory (one level up).
-
-+ `rmdir`: "remove an (empty) directory". We may use `rmdir` as a safer way to remove unwanted folders. 
+#box(
+  width: 100%,
+  stroke: 0.75pt,
+  radius: 4pt,
+  inset: 8pt,
+   [Note that you may create a folder in a different directory by providing a path to the folder in combination with the foldername. E.g: `mkdir ../<new-folder>` will create a folder named "`<new-folder>`" in the previous directory (one level up)..])
+#line(length: 50%, end: (75%, 0%), start: (25%, 0%))
+- #text(fill: red)[ `rmdir`]: "remove an (empty) directory". We may use `rmdir` as a safer way to remove unwanted folders. 
 
 Since there is no "recycle bin" from which we may restore content delted by command line, `rmdir` guarantees us that the directory we are removing is empty.
+#line(length: 50%, end: (75%, 0%), start: (25%, 0%))
+- #text(fill: red)[ `touch`]: "create an empty file". `touch` creates an empty file if one of the same name does not already exist, otherwise updates the time it was last modified without making changes. 
 
-+ `touch`: "create an empty file". `touch` creates an empty file if one of the same name does not already exist, otherwise updates the time it was last modified without making changes. 
-
-E.g: `touch somefile.txt`. 
-
-+ `cp`: "copy". `cp` copies files from one location to another. E.g: `cp somefile.txt backup-somefile.txt` will create a duplicate of `somefile.txt's` contents, named `backup-somefiles.txt`. 
+E.g: `touch somefile.txt` will creat an empty file: `somefile.txt`.
+#line(length: 50%, end: (75%, 0%), start: (25%, 0%))
+- `cp`: "copy". `cp` copies files from one location to another. E.g: `cp somefile.txt backup-somefile.txt` will create a duplicate of `somefile.txt's` contents, named `backup-somefiles.txt`. 
 
 Similarly to `cp`, we have `mv`: "move". `mv` *#underline[moves]* files from one location to another, so the original will no longer remain. E.g: `mv somefile.txt backup-somefile.txt` will obliterate `somefile.txt` and create `backup-somefile.txt` with the same name. 
 
 Interestingly, `mv` is commonly used to drive the "file rename" mechanism, as the content remains the same. 
+#line(length: 50%, end: (75%, 0%), start: (25%, 0%))
+- #text(fill: red)[ `rm`]: "remove files". `rm` is used to remove both files and folders, but #underline[use this carefully]! As mentioned above, command line does not have a way to easily recover deleted files, so make sure you are deleting only the items you truly wish to never see again. 
 
-+ `rm`: "remove files". `rm` is used to remove both files and folders, but #underline[use this carefully]! As mentioned above, command line does not have a way to easily recover deleted files, so make sure you are deleting only the items you truly wish to never see again. 
+E.g: `rm somefile.txt`. This obliterates `somefile.txt`. Useage can be extended to directories by appending the `-r` ("recurse") flag, to delete the directory and all its contents: `rm /somedir`.
 
-Example useage: `rm somefile.txt`. This obliterates `somefile.txt`. Useage can be extended to directories by appending the `-r` ("recurse") flag, to delete the directory and all its contents: `rm /somedir`.
+#pagebreak()
 
 == Peeking Into Files
 #v(0.15in)
 
-+ `cat`: "print file contents". `cat` literally performs concatenation and print, but is most often used to show the complete contents of a file. Assuming we have `somefile.txt` and are in the same directory, we may display it to terminal with: `cat somefile.txt`. 
+- #text(fill: red)[ `cat`]: "print file contents". `cat` literally performs concatenation and print, but is most often used to show the complete contents of a file. Assuming we have `somefile.txt` and are in the same directory, we may display it to terminal with: `cat somefile.txt`. 
 
 Because `cat` performs concatenation, we may use it to combine files with some handy output redirection: `cat somefile.txt otherfile.txt > someotherfile.txt`, where `someotherfile.txt` contains the concatenation of both files.
+#line(length: 50%, end: (75%, 0%), start: (25%, 0%))
+- #text(fill: red)[ `less`]: "scroll through a file". `less` allows us to open a file so that we may scroll up/down with a keyboard. 
 
-+ `less`: "scroll through a file". `less` allows us to open a file so that we may scroll up/down with a keyboard. E.g: `less somefile.txt`. We may exit this mode by selecting `q`.
-
-+ `head` and `tail`: "start from beginnind/end of a file". `head` allows us to peak at the head (top) or `tail` (bottom) of our file, by default showing the first 10 lines. This can be customized with the `-n` flag to show more lines. 
+E.g: `less somefile.txt`. We may exit this mode by selecting `q`.
+#line(length: 50%, end: (75%, 0%), start: (25%, 0%))
+- #text(fill: red)[ `head`] and #text(fill: red)[ `tail`]: "start from beginnind/end of a file". `head` allows us to peak at the head (top) or `tail` (bottom) of our file, by default showing the first 10 lines. This can be customized with the `-n` flag to show more lines. 
  
 E.g: `head -n 20 somefile.txt` will show the first 20 lines. 
+#line(length: 50%, end: (75%, 0%), start: (25%, 0%))
 
-
-+ `wc`: "count words". `wc` by default prints the number of lines(`-l`), words(`-w`) and bytes(`-c`) in that order, and may print only one of these as specified by a given flag. 
+- #text(fill: red)[ `wc`]: "count words". `wc` by default prints the number of lines(`-l`), words(`-w`) and bytes(`-c`) in that order, and may print only one of these as specified by a given flag. 
  
 E.g: `wc -l somefile.txt` will print the number of lines in the specified file.
 
 
 == Searching & Finding
-
-+ `grep`: "search for text". `grep` looks through files to find lines containing a specific word or pattern. 
+#v(.15in)
+- #text(fill: red)[ `grep`]: "search for text". `grep` looks through files to find lines containing a specific word or pattern. 
 
 E.g: `grep "hello" somefile.txt` would print all lines in `somefile.txt` including the word "hello", if any. 
 
 As with most commands, the behavior of grep can very heavily be customized with flags. The most common ones are `-i` for case insnsitive search and `-r` for recursive search through directories, and a complete list may be found in the #link("https://www.man7.org/linux/man-pages/man1/grep.1.html")[#underline[documentation]].
-
-+ `find`: "go find some files". `find` searches folders and their subfolders to find items that match certain criteria. This command is often used to find patterns defined with regex. 
+#line(length: 50%, end: (75%, 0%), start: (25%, 0%))
+- #text(fill: red)[ `find`]: "go find some files". `find` searches folders and their subfolders to find items that match certain criteria. This command is often used to find patterns defined with regex. 
 
 E.g: `find /home/Documents -name "*.txt"` will list every `.txt` file within the `/home/Documents` directory. As with `grep`, the behaviour of `find` can be heavily customized with flags. Refer to the #link("https://www.man7.org/linux/man-pages/man1/find.1.html")[documentation] to learn more!
-
-+ `diff`: "compare two files". `Diff` compares two files and shows which lines are different.
+#line(length: 50%, end: (75%, 0%), start: (25%, 0%))
+- #text(fill: red)[ `diff`]: "compare two files". `Diff` compares two files and shows which lines are different.
   
 E.g: `diff somefile1.txt somefile2.txt` will display exactly where the two differ. 
 
