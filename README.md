@@ -18,3 +18,8 @@ to have their name shared on the big scary interwebs:
 
 + Dr. Amir Baharloo
 + Jonathan Warawa
+
+
+
+**Found a Typo? Have Suggestions?**
+Email: kjasman (at) uvic.ca
