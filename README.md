@@ -21,5 +21,11 @@ to have their name shared on the big scary interwebs:
 
 
 
+
+
+
+
+
 **Found a Typo? Have Suggestions?**
+
 Email: kjasman (at) uvic.ca
