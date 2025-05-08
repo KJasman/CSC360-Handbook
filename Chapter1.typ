@@ -3,9 +3,9 @@
 #show: chapter.with(
   title: "CSC 360 Handbook",
   number: none,
-  authors:("Konrad Jasman",),
+  author:("Konrad Jasman",),
   overview: (
-"This handbook presents a hands-on approach to learning operating systems concepts, within the context of CSC 360 at the University of Victoria. This is intended to provide a brief overview of theory, but only within the extent needed to get started. If you, the reader, find yourself lost, you may review the suggested reading or our course textbook: \"Operating System Concepts, 10th Edition\".
+"This handbook presents a hands-on approach to learning operating systems concepts, within the context of CSC 360 at the University of Victoria. This is intended to provide a brief overview of theory, but only within the extent needed to get started. If you, the reader, find yourself lost, you may review the suggested reading or our course textbook: \"Operating System Concepts, 10th Edition\", as well as the relevant documentation for Git, Linux, or other tools mentioned.
 
 As a preface, it should be noted that this handbook was last modified in April 2025. Since then, the technology mentioned may have evolved! However, the concepts contained within may serve as a good reference if you find yourself lost – or simply want to learn a little bit more and aren't sure where to start.
 
@@ -81,7 +81,15 @@ git init
 ```
 - This command sets up a new Git repository in the current directory, creating a hidden `.git` folder that stores all version information. 
 
-2. Clone an existing repository:
+#box(
+  width: 100%,
+  stroke: 0.75pt,
+  radius: 4pt,
+  inset: 8pt,
+   [Note: If you are using Git solely for the purposes of using an online git service (Github, Gitlab, etc), these services have a GUI that helps you create and manage repositories. It may be simpler to use this GUI at first, however, it can't hurt to get familiar with your terminal!])
+
+
+1. Clone an existing repository:
 ```sh
 git clone https://github.com/username/example-repo.git
 ```
@@ -132,6 +140,7 @@ Commit messages should be descriptive enough to explain why the changes were mad
 
 One important reason for commit messages is for you, the developer. Say you want to rollback to a previous version of your code. You could look through each previous commit and your inspect changes, but this is quite time consuming. If you use informative commit messages, you can quickly rollback to a certain state of your program. 
 
+
 *Viewing Commit History*
 
 So... you are working on a longer assignment with multiple parts. After many hours of work, you get one part working. Great! Time to tackle the next. 
@@ -141,7 +150,7 @@ A few hours in to the next part, you suddenly realize that your approach is enti
 ```sh
 git log
 ```
-- Shows a list of commits, including commit IDs, authors, dates, and commit messages.
+- Shows a list of commits, including commit IDs, author, dates, and commit messages.
 - Press q to quit the log view.
 
 Short variants:
@@ -194,7 +203,15 @@ The pull and push commands form the backbone of Git's collaboration.
 
 `git pull` does the opposite—it fetches the latest commits from a remote repository and integrates them into your local branch, keeping your work synchronized with the team's changes. 
 
-These commands bridge your isolated development environment with the broader collaborative workspace!
+#box(
+  width: 100%,
+  stroke: 0.75pt,
+  radius: 4pt,
+  inset: 8pt,
+   [Note: The first time you use one of these commands, you may be prompted to set an "upstream" - along with the command to do so. After you do this, `git pull` and `git push` may be run without additional parameters.])
+
+
+These commands bridge your isolated development environment with the broader collaborative workspace! 
 
 ```sh
 git push <remote> <branch>
@@ -255,8 +272,6 @@ git checkout main
 git merge <feature-branch-name>
 ```
 
-#pagebreak()
-
 *Deleting a Branch*
 
 The rules for branch deletion vary per organization. Generally, branches are deleted after merging or if the branch is no longer needed:
@@ -300,8 +315,6 @@ This can be quite tricky, and you will likely make mistakes -- especially the fi
 
 A remote is a copy of your repository stored elsewhere (usually on a server or hosted platform). Typically:
 - `origin` is the default name for your primary remote.
-
-#pagebreak()
 
 *Listing Remotes*
 
@@ -393,6 +406,8 @@ Interactive rebase (`git rebase -i <commit_or_branch>`) allows you to reorder, s
    - Ensure large files, temporary files, or system files don't clutter your repo.
    - Example entries in .gitignore:
 
+#v(.2in)
+
 ```sh
 # macOS
 .DS_Store
@@ -404,13 +419,13 @@ Thumbs.db
 __pycache__/
 *.pyc
 
-# Node.js
+# Node.js  
 node_modules/
 ```
 
-There are many more advanced Git concept, from Cherry-Picking to Submodules and more. If you are interested, the best source of information is the Git book itself, found #link("https://git-scm.com/book/en/v2")[#underline[here]]. 
+There are many more advanced Git concepts, from Cherry-Picking to Submodules and more. If you are interested, the best source of information is the Git book itself, found #link("https://git-scm.com/book/en/v2")[#underline[here]]. 
 
-
+#pagebreak()
 = Linux Command Line Basics
 
 Similar to Git, it is difficult to progress through your career as a software developer without running into Linux. For many who primarily use Windows or Mac systems, you can get around your system fairly well without using Bash/Zsh, Powershell, or alternative command line client. Not so for Linux. Most Linux systems are faster and more effective to navigate via command line.
@@ -503,6 +518,7 @@ E.g: `find /home/Documents -name "*.txt"` will list every `.txt` file within the
   
 E.g: `diff somefile1.txt somefile2.txt` will display exactly where the two differ. 
 
+#pagebreak()
 = Makefile Basics
 
 Makefiles allow us to simplify compilation. Generally, compiling a series of files correctly can be complicated; requiring fairly lengthy strings.

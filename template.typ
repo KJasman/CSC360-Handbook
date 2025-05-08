@@ -1,24 +1,29 @@
 #let chapter(
-title: "Chapter Title",
-number: none,
-authors: (),  // Parameter for authors (empty array by default)
-overview: none, // New parameter for chapter overview
-body
+  title: "Chapter Title",
+  number: none,
+  author: ("Konrad Jasman"),  // Parameter for author
+  overview: none, // New parameter for chapter overview
+  body
 ) = {
 // Page setup
 set page(
-margin: (left: 2.5cm, right: 2.5cm, top: 2.5cm, bottom: 2.5cm),
-numbering: "1",
-number-align: center
+  margin: (left: 2.5cm, right: 2.5cm, top: 2.5cm, bottom: 2.5cm),
+  numbering: "1",
+  number-align: center,
+  footer: [
+      #align(center)[
+        #text(size: 9pt)[\u{00A9} 2025 Konrad Jasman]
+      ]
+  ]
 )
 // Typography
 set text(
-font: ("New Computer Modern"),
-size: 12pt
+  font: ("New Computer Modern"),
+  size: 12pt
 )
 // Basic heading styles
 set heading(
-numbering: "1."
+  numbering: "1."
 )
 // Style level 1 headings and create chapter title page
 show heading.where(level: 1): it => {
@@ -38,7 +43,7 @@ pagebreak(weak: true)
       ]
     ]
     
-    // Overview section in the middle (if provided)
+    // Overview section in the middle 
     #if overview != none [
       #align(left)[
         #v(2em)
@@ -50,14 +55,14 @@ pagebreak(weak: true)
       ]
     ]
 
-    // Authors block at bottom right
+    // author block at bottom right
     #align(bottom + right)[
-      #text(size: 12pt)[Authors:]
+      #text(size: 12pt)[Author:]
       #text(size: 12pt, style: "italic",)[
-        #v(0.5em)
-        #authors.join(", ")
+        #v(0.25em)
+        #author.join(", ") // Add more later if collaborating
       ]
-      #v(2em) // Add some bottom margin
+      #v(3em) // Add some bottom margin
     ]
   ]
   
@@ -75,14 +80,14 @@ pagebreak(weak: true)
 }
 // Code block styling
 show raw.where(block: true): it => {
-block(
-width: 100%,
-fill: rgb(248, 248, 248),
-stroke: 0.5pt + rgb(220, 220, 220),
-radius: 3pt,
-inset: 10pt,
-it
-)
+  block(
+    width: 100%,
+    fill: rgb(248, 248, 248),
+    stroke: 0.5pt + rgb(220, 220, 220),
+    radius: 3pt,
+    inset: 10pt,
+    it
+  )
 }
 // The main content
 body
