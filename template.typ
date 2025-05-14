@@ -8,12 +8,19 @@
 // Page setup
 set page(
   margin: (left: 2.5cm, right: 2.5cm, top: 2.5cm, bottom: 2.5cm),
-  numbering: "1",
-  number-align: center,
   footer: [
-      #align(center)[
+    #grid(
+      columns: (1fr, auto),
+      align(center)[
         #text(size: 9pt)[\u{00A9} 2025 Konrad Jasman]
+      ],
+      align(right)[
+         #text(size: 9pt)[
+          #context{ // What is the purpose of context?!
+            counter(page).display()
+          }]
       ]
+    )
   ]
 )
 // Typography
