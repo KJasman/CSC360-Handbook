@@ -5,11 +5,9 @@
   number: none,
   author:("Konrad Jasman",),
   overview: (
-"This handbook presents a hands-on approach to learning operating systems concepts, within the context of CSC 360 at the University of Victoria. This is intended to provide a brief overview of theory, but only within the extent needed to get started. If you, the reader, find yourself lost, you may review the suggested reading or our course textbook: \"Operating System Concepts, 10th Edition\", as well as the relevant documentation for Git, Linux, or other tools mentioned.
+"This section covers programming tools with which some competency is expected. It aims to address any gaps in understanding and establish an applied understanding of the aforementioned tools. 
 
 As a preface, it should be noted that this handbook was last modified in April 2025. Since then, the technology mentioned may have evolved! However, the concepts contained within may serve as a good reference if you find yourself lost – or simply want to learn a little bit more and aren't sure where to start.
-
-This section covers programming tools with which some competency is expected. This chapter aims to address any gaps in understanding and establish an applied understanding of the aforementioned tools. 
 
 There may be more chapters added to support student learning with worked examples. 
 ")
@@ -39,11 +37,11 @@ Git is by far the most popular distributed version control system. It's fast, fr
 - Branching and merging are efficient and fast.
 - Rich ecosystem of tools and third-party hosting services (such as GitHub, GitLab, and Bitbucket).
 
-Anyway, by now you probably know Git is good and have a fairly strong idea of why we enjoy it so. Let's get hands-on.
+Anyway, by now you probably know Git is good and have a fairly strong idea of why we enjoy it: let's get hands-on.
 
 == Setting Up Git
 #v(.15in)
-If you are a student in CSC360 at UVic, you likely have access to the UVic CSC Linux Server – which has Git installed for your convenience. If you plan on exclusively using the CSC Servers for the duration of CSC 360, you may skip ahead to the #link(<basic-config>)[#underline[basic configuration]] section.
+If you are a student in CSC360 at UVic, you likely have access to the UVic CSC Linux Server – which has Git installed for your convenience. If you plan on exclusively using the CSC Servers for the duration of CSC 360, you may skip ahead to the #link(<basic-config>)[#underline[#text(fill: blue, [basic configuration])]] section.
 
 *Installing Git*
 - Windows: Download from git-scm.com and follow the installation wizard.
@@ -86,7 +84,7 @@ git init
   stroke: 0.75pt,
   radius: 4pt,
   inset: 8pt,
-   [Note: If you are using Git solely for the purposes of using an online git service (Github, Gitlab, etc), these services have a GUI that helps you create and manage repositories. It may be simpler to use this GUI at first, however, it can't hurt to get familiar with your terminal!])
+   [If you are using Git solely for the purposes of using an online git service (Github, Gitlab, etc), these services have a GUI that helps you create and manage repositories. It may be simpler to use this GUI at first, however, it can't hurt to get familiar with your terminal!])
 
 
 1. Clone an existing repository:
@@ -208,7 +206,7 @@ The pull and push commands form the backbone of Git's collaboration.
   stroke: 0.75pt,
   radius: 4pt,
   inset: 8pt,
-   [Note: The first time you use one of these commands, you may be prompted to set an "upstream" - along with the command to do so. After you do this, `git pull` and `git push` may be run without additional parameters.])
+   [The first time you use one of these commands, you may be prompted to set an "upstream" - along with the command to do so. After you do this, `git pull` and `git push` may be run without additional parameters.])
 
 
 These commands bridge your isolated development environment with the broader collaborative workspace! 
@@ -423,7 +421,7 @@ __pycache__/
 node_modules/
 ```
 
-There are many more advanced Git concepts, from Cherry-Picking to Submodules and more. If you are interested, the best source of information is the Git book itself, found #link("https://git-scm.com/book/en/v2")[#underline[here]]. 
+There are many more Git concepts, from Cherry-Picking, to Submodules and more. If you are interested, the best source of information is the Git book itself, found #link("https://git-scm.com/book/en/v2")[#underline[#text(fill: blue, [here])]]. 
 
 #pagebreak()
 = Linux Command Line Basics
@@ -447,7 +445,7 @@ Some flags can be used to specify additional behaviour for `ls`. For instance: `
 #line(length: 50%, end: (75%, 0%), start: (25%, 0%))
 - #text(fill: red)[ `cd`]: "change directory". `cd` allows us to move from one directory to another. You can navigate either with relative paths, providing directions from your current location, or by absolute paths (by providing the absolute path to a directory).
 
-Additionally, remember that `cd ..` moves "up" one level in the folder structure, and `cd ~` will always take you to your home directory. 
+Additionally, `cd ..` moves "up" one level in the folder structure, `cd ~` will always take you to your home directory and `cd -` returns the user to the previous working directory. 
 
 == File Management
 #v(0.15in)
@@ -459,7 +457,7 @@ Additionally, remember that `cd ..` moves "up" one level in the folder structure
   stroke: 0.75pt,
   radius: 4pt,
   inset: 8pt,
-   [Note that you may create a folder in a different directory by providing a path to the folder in combination with the foldername. E.g: `mkdir ../<new-folder>` will create a folder named "`<new-folder>`" in the previous directory (one level up)..])
+   [You may create a folder in a different directory by providing a path to the folder in combination with the foldername. E.g: `mkdir ../<new-folder>` will create a folder named "`<new-folder>`" in the previous directory (one level up)..])
 #line(length: 50%, end: (75%, 0%), start: (25%, 0%))
 - #text(fill: red)[ `rmdir`]: "remove an (empty) directory". We may use `rmdir` as a safer way to remove unwanted folders. 
 
